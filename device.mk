@@ -14,6 +14,19 @@
 # limitations under the License.
 #
 
+#OpenGAPPS    
+GAPPS_VARIANT := pico
+
+GAPPS_FORCE_BROWSER_OVERRIDES := true
+
+GAPPS_FORCE_WEBVIEW_OVERRIDES := true
+
+GAPPS_FORCE_PACKAGE_OVERRIDES := true
+
+GAPPS_EXCLUDED_PACKAGES := FaceLock \
+    AndroidPlatformServices \
+    PrebuiltGmsCoreInstantApps \
+    
 PRODUCT_DIR := $(dir $(lastword $(filter-out device/common/%,$(filter device/%,$(ALL_PRODUCTS)))))
 
 PRODUCT_PROPERTY_OVERRIDES := \
@@ -111,3 +124,6 @@ $(call inherit-product-if-exists,vendor/google/products/gms.mk)
 
 # Get native bridge settings
 $(call inherit-product-if-exists,$(LOCAL_PATH)/nativebridge/nativebridge.mk)
+
+#OpenGAPPS    
+$(call inherit-product, vendor/opengapps/build/opengapps-packages.mk)
